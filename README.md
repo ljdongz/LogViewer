@@ -1,7 +1,39 @@
 # LogViewer
 
+<p align="center">
+  🇺🇸 English | <a href="docs/README.ko.md">🇰🇷 한국어</a>
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+  <img src="https://img.shields.io/badge/platform-iOS%2016%2B-blue" alt="Platform">
+  <img src="https://img.shields.io/badge/Swift-6.0-F05138?logo=swift&logoColor=white" alt="Swift">
+  <img src="https://img.shields.io/badge/SwiftPM-compatible-brightgreen" alt="SwiftPM">
+</p>
+
 An in-app log viewer SwiftUI component for iOS apps.
 Log capture, search, filter, share, and file export.
+
+## Table of Contents
+
+- [Features](#features)
+- [Requirements](#requirements)
+- [Installation](#installation)
+  - [Swift Package Manager (Xcode UI)](#swift-package-manager-xcode-ui)
+  - [Package.swift](#packageswift)
+- [Activation](#activation--read-this-first)
+- [Logging](#logging)
+- [Presenting the screen](#presenting-the-screen--your-choice)
+  - [Pattern 1. NavigationLink in a debug menu](#pattern-1-navigationlink-in-a-debug-menu)
+  - [Pattern 2. Presenting a sheet via a secret gesture](#pattern-2-presenting-a-sheet-via-a-secret-gesture-3-tap-long-press-etc)
+  - [Pattern 3. A floating button only in debug builds](#pattern-3-a-floating-button-only-in-debug-builds)
+  - [Pattern 4. Presenting from UIKit](#pattern-4-presenting-from-uikit)
+  - [Pattern 5. Presenting on shake (UIWindow subclass)](#pattern-5-presenting-on-shake-uiwindow-subclass)
+- [Configuration](#configuration)
+- [Log export](#log-export)
+- [Data model](#data-model)
+- [Examples](#examples)
+- [License](#license)
 
 ## Features
 
@@ -19,7 +51,7 @@ Log capture, search, filter, share, and file export.
 
 ### Swift Package Manager (Xcode UI)
 
-File → Add Package Dependencies → URL → `https://github.com/<your-repo>/LogViewer`
+File → Add Package Dependencies → URL → `https://github.com/ljdongz/LogViewer`
 
 ### Package.swift
 
@@ -31,7 +63,7 @@ let package = Package(
     name: "MyApp",
     platforms: [.iOS(.v16)],
     dependencies: [
-        .package(url: "https://github.com/<your-repo>/LogViewer", from: "1.0.0"),
+        .package(url: "https://github.com/ljdongz/LogViewer", from: "1.0.0"),
     ],
     targets: [
         .target(
@@ -75,9 +107,9 @@ When `isEnabled == false`, calls to `LogStore.shared.log(...)` are immediately i
 ## Logging
 
 ```swift
-LogStore.shared.log(level: .notice,  category: "App",     message: "앱 시작")
+LogStore.shared.log(level: .notice,  category: "App",     message: "App started")
 LogStore.shared.log(level: .warning, category: "Network", message: "429 Too Many Requests")
-LogStore.shared.log(level: .error,   category: "Payment", message: "카드 한도 초과")
+LogStore.shared.log(level: .error,   category: "Payment", message: "Card limit exceeded")
 ```
 
 `LogStore.shared.log(...)` is `nonisolated`, so it can be called from any thread (it hops to MainActor internally). No `await` is required at the call site.
@@ -98,7 +130,7 @@ struct DebugMenu: View {
     var body: some View {
         NavigationStack {
             List {
-                NavigationLink("로그 보기") { LogViewerView() }
+                NavigationLink("View Logs") { LogViewerView() }
             }
             .navigationTitle("Debug")
         }
