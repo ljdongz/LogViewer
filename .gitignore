@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Packages/
+Package.resolved
+
+# Xcode user-specific data
+xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+
+# Editors
+*.swp
+.idea/
+.vscode/
+
+# Tooling artifacts
+.omc/

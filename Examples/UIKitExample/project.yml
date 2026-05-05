@@ -1,0 +1,35 @@
+name: UIKitExample
+options:
+  bundleIdPrefix: com.logviewer.example
+  deploymentTarget:
+    iOS: "16.0"
+  xcodeVersion: "16.0"
+
+packages:
+  LogViewer:
+    path: ../..
+
+targets:
+  UIKitExample:
+    type: application
+    platform: iOS
+    sources:
+      - path: .
+        excludes:
+          - project.yml
+    dependencies:
+      - package: LogViewer
+    info:
+      path: Info.plist
+      properties:
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+          UISceneConfigurations:
+            UIWindowSceneSessionRoleApplication:
+              - UISceneConfigurationName: "Default Configuration"
+                UISceneDelegateClassName: "$(PRODUCT_MODULE_NAME).SceneDelegate"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.logviewer.example.uikit
+        SWIFT_VERSION: "5.9"
