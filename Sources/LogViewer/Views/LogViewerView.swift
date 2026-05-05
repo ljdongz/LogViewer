@@ -1,11 +1,12 @@
 import SwiftUI
 
-/// LogViewer가 제공하는 SwiftUI 로그 화면.
+/// The SwiftUI log screen provided by LogViewer.
 ///
-/// ``LogStore/shared``의 항목을 보여주며 검색/하이라이트, 레벨·카테고리 필터,
-/// 텍스트 공유, `.log` 파일 export 기능을 포함합니다. 라이브러리는 이 뷰를
-/// 자동으로 띄우지 않으므로 호스트 앱이 sheet/NavigationLink/full-screen cover 등
-/// 원하는 방식으로 띄우면 됩니다. 트리거 패턴 모음은 <doc:PresentationRecipes> 참고.
+/// Shows the entries from ``LogStore/shared`` and includes search and highlighting,
+/// level and category filters, text sharing, and `.log` file export. The library does not
+/// present this view automatically, so the host app is free to present it via sheet,
+/// `NavigationLink`, full-screen cover, or any other mechanism. See
+/// <doc:PresentationRecipes> for a collection of trigger patterns.
 ///
 /// ```swift
 /// struct DebugMenu: View {
@@ -17,9 +18,9 @@ import SwiftUI
 /// }
 /// ```
 ///
-/// 내부에 자체 `NavigationStack`을 가지고 있어 sheet의 root로 그대로 사용해도
-/// 타이틀/툴바가 정상 동작합니다. 닫기 버튼은 `Environment(\.dismiss)`를 사용해
-/// presenter와 무관하게 동작합니다.
+/// The view embeds its own `NavigationStack`, so it works correctly as the root of a
+/// sheet — title and toolbar behave as expected. The close button uses
+/// `Environment(\.dismiss)`, so it works regardless of the presenter.
 public struct LogViewerView: View {
     @Environment(\.dismiss) private var dismiss
     @StateObject private var store = LogStore.shared
@@ -46,9 +47,9 @@ public struct LogViewerView: View {
     // Initial scroll flag
     @State private var didInitialScroll: Bool = false
 
-    /// 빈 ``LogViewerView``를 만듭니다.
+    /// Creates an empty ``LogViewerView``.
     ///
-    /// 모든 상태는 ``LogStore/shared``에서 가져오므로 별도 파라미터가 필요 없습니다.
+    /// All state is sourced from ``LogStore/shared``, so no parameters are needed.
     public init() {}
 
     // MARK: - Filtered Entries
@@ -146,7 +147,7 @@ public struct LogViewerView: View {
             // Level chips row
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
-                    // 전체 버튼
+                    // "All" button
                     Button {
                         selectedLevels = Set(LogEntry.Level.allCases)
                     } label: {
@@ -221,17 +222,17 @@ public struct LogViewerView: View {
         let isIndividuallySelected = !isAllLevelsSelected && selectedLevels.contains(level)
         return Button {
             if isAllLevelsSelected {
-                // 전체 선택 상태 → 해당 레벨만 선택
+                // "All" selected -> select only this level
                 selectedLevels = [level]
             } else if selectedLevels.contains(level) {
-                // 이미 선택된 레벨 해제
+                // Deselect an already-selected level
                 selectedLevels.remove(level)
-                // 모두 해제되면 전체 활성화
+                // If everything is deselected, re-enable all
                 if selectedLevels.isEmpty {
                     selectedLevels = Set(LogEntry.Level.allCases)
                 }
             } else {
-                // 선택되지 않은 레벨 추가
+                // Add a level that wasn't selected
                 selectedLevels.insert(level)
             }
         } label: {

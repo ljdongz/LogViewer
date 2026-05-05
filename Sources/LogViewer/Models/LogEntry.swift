@@ -1,45 +1,46 @@
 import Foundation
 
-/// 단일 로그 항목.
+/// A single log entry.
 ///
-/// ``LogStore/log(level:category:message:file:function:line:)``가 내부에서 자동으로
-/// 생성하므로 호스트 앱이 직접 이 타입을 만들 일은 거의 없습니다. 외부 시스템에서
-/// 받은 로그를 직접 적재할 때만 ``LogStore/append(_:)``와 함께 사용합니다.
+/// ``LogStore/log(level:category:message:file:function:line:)`` constructs this internally,
+/// so the host app rarely creates one directly. Use it together with ``LogStore/append(_:)``
+/// only when recording a log received from an external system.
 ///
 /// ## Topics
-/// ### 메타데이터
+/// ### Metadata
 /// - ``id``
 /// - ``timestamp``
 /// - ``level``
 /// - ``category``
-/// ### 본문
+/// ### Body
 /// - ``message``
-/// ### 호출 위치
+/// ### Call Site
 /// - ``file``
 /// - ``function``
 /// - ``line``
 /// - ``fileName``
-/// ### 포맷팅
+/// ### Formatting
 /// - ``formatted(includeLocation:)``
-/// ### 관련 타입
+/// ### Related Types
 /// - ``Level``
 public struct LogEntry: Identifiable, Equatable, Sendable {
 
-    /// 로그 레벨. 심각도 순으로 ``log`` → ``fault``로 증가합니다.
+    /// Log level. Severity increases from ``log`` to ``fault``.
     ///
-    /// `Comparable`을 채택하므로 `level >= .warning`처럼 임계값 비교가 가능합니다.
+    /// Conforms to `Comparable`, so threshold comparisons such as `level >= .warning` are
+    /// supported.
     public enum Level: String, CaseIterable, Equatable, Comparable, Sendable {
-        /// 디버그/정보성 로그.
+        /// Debug or informational log.
         case log = "LOG"
-        /// 일반 통지 (info 수준).
+        /// General notice (info-level).
         case notice = "NOTICE"
-        /// 경고. 동작은 계속되지만 주의가 필요.
+        /// Warning. Operation continues but warrants attention.
         case warning = "WARN"
-        /// 오류. 특정 동작이 실패한 상태.
+        /// Error. A particular operation has failed.
         case error = "ERROR"
-        /// 치명적 오류. 기능 일부가 동작 불가.
+        /// Critical error. Part of the feature is unusable.
         case critical = "CRITICAL"
-        /// 시스템 결함 수준의 오류.
+        /// System-fault-level error.
         case fault = "FAULT"
 
         var severity: Int {
@@ -58,34 +59,34 @@ public struct LogEntry: Identifiable, Equatable, Sendable {
         }
     }
 
-    /// 항목 고유 식별자. 기본값은 새로 생성된 `UUID`.
+    /// Unique identifier of the entry. Defaults to a freshly generated `UUID`.
     public let id: UUID
-    /// 항목 생성 시각.
+    /// The time the entry was created.
     public let timestamp: Date
-    /// 로그 레벨.
+    /// The log level.
     public let level: Level
-    /// 카테고리 문자열 (예: "Network", "Auth").
+    /// Category string (e.g. `"Network"`, `"Auth"`).
     public let category: String
-    /// 로그 본문.
+    /// The log body.
     public let message: String
-    /// 호출 파일의 전체 경로 (`#file`).
+    /// Full path of the calling file (`#file`).
     public let file: String
-    /// 호출 함수 시그니처 (`#function`).
+    /// Calling function signature (`#function`).
     public let function: String
-    /// 호출 라인 번호 (`#line`).
+    /// Calling line number (`#line`).
     public let line: Int
 
-    /// 새 ``LogEntry``를 만듭니다.
+    /// Creates a new ``LogEntry``.
     ///
     /// - Parameters:
-    ///   - id: 항목 식별자. 기본값은 새 `UUID`.
-    ///   - timestamp: 생성 시각. 기본값은 `Date()`.
-    ///   - level: 로그 레벨.
-    ///   - category: 카테고리 문자열.
-    ///   - message: 로그 본문.
-    ///   - file: 호출 파일 경로 (`#file`).
-    ///   - function: 호출 함수 (`#function`).
-    ///   - line: 호출 라인 (`#line`).
+    ///   - id: Entry identifier. Defaults to a new `UUID`.
+    ///   - timestamp: Creation time. Defaults to `Date()`.
+    ///   - level: Log level.
+    ///   - category: Category string.
+    ///   - message: Log body.
+    ///   - file: Calling file path (`#file`).
+    ///   - function: Calling function (`#function`).
+    ///   - line: Calling line (`#line`).
     public init(
         id: UUID = UUID(),
         timestamp: Date = Date(),
@@ -106,22 +107,22 @@ public struct LogEntry: Identifiable, Equatable, Sendable {
         self.line = line
     }
 
-    /// ``file`` 경로의 마지막 컴포넌트(파일명 + 확장자).
+    /// Last path component of ``file`` (file name plus extension).
     public var fileName: String {
         (file as NSString).lastPathComponent
     }
 
-    /// 항목을 한 줄 (또는 위치 정보 포함 시 두 줄) 텍스트로 포맷팅합니다.
+    /// Formats the entry as one line — or two lines when location is included.
     ///
-    /// 타임스탬프 포맷은 ``LogViewerConfiguration/dateFormat``을 따릅니다.
-    /// 결과 형태:
+    /// The timestamp format follows ``LogViewerConfiguration/dateFormat``.
+    /// Output shape:
     /// ```
     /// [HH:mm:ss.SSS] [LEVEL] [Category] message
     /// ↳ FileName.swift:42 function(_:)
     /// ```
     ///
-    /// - Parameter includeLocation: `true`이면 두 번째 줄에 호출 위치를 덧붙입니다.
-    /// - Returns: 포맷팅된 문자열.
+    /// - Parameter includeLocation: If `true`, appends the call site on a second line.
+    /// - Returns: The formatted string.
     public func formatted(includeLocation: Bool = false) -> String {
         let formatter = Self.formatter(for: LogViewer.dateFormat)
         let time = formatter.string(from: timestamp)

@@ -1,19 +1,19 @@
 # LogViewer
 
-iOS 앱을 위한 인-앱 로그 뷰어 SwiftUI 컴포넌트.
-로그 수집 · 검색 · 필터 · 공유 · 파일 내보내기.
+An in-app log viewer SwiftUI component for iOS apps.
+Log capture, search, filter, share, and file export.
 
-## 특징
+## Features
 
-- 로그 캡처 (`LogStore`) — 레벨/카테고리/위치 메타데이터, ring-buffer (기본 500개)
-- 로그 화면 (`LogViewerView`) — 검색/하이라이트, 레벨/카테고리 필터, 텍스트 공유, `.log` 파일 export
-- 가벼운 디자인 — 라이브러리는 "어떻게 띄울지"는 강제하지 않고 화면 컴포넌트만 제공. 띄우는 방식은 앱이 자유롭게 결정
+- Log capture (`LogStore`) — level/category/location metadata, ring-buffer (default 500 entries)
+- Log screen (`LogViewerView`) — search/highlight, level/category filters, text sharing, `.log` file export
+- Lightweight design — the library does not enforce "how to present it"; it provides only the screen component. The app is free to decide how to present it.
 - iOS 16+ / SwiftUI / Swift 6.0 toolchain
 
 ## Requirements
 
 - iOS 16.0+
-- Xcode 15+ (Swift 5.9 이상; Swift 6 toolchain 호환)
+- Xcode 15+ (Swift 5.9 or later; Swift 6 toolchain compatible)
 
 ## Installation
 
@@ -44,9 +44,9 @@ let package = Package(
 )
 ```
 
-## 활성화 (Activation) — 필독
+## Activation — Read this first
 
-`LogViewer.isEnabled`의 기본값은 `false`이며, **사용자 앱이 명시적으로 켜야** 로그가 수집됩니다. SPM 라이브러리는 release로 빌드되므로 라이브러리 내부의 `#if DEBUG`로는 사용자 앱의 빌드 모드를 알 수 없기 때문입니다. 사용자 앱의 진입점에서 `#if DEBUG` 안에 다음을 호출하세요.
+`LogViewer.isEnabled` defaults to `false`, and **the consuming app must explicitly turn it on** for logs to be captured. This is because SPM libraries are built in release mode, so the library's internal `#if DEBUG` cannot detect the consuming app's build configuration. Call the following inside `#if DEBUG` at your app's entry point.
 
 ```swift
 import SwiftUI
@@ -70,9 +70,9 @@ struct MyApp: App {
 }
 ```
 
-`isEnabled == false` 상태에서는 `LogStore.shared.log(...)` 호출이 즉시 무시되고, `LogViewer.configure { ... }`도 no-op이 됩니다. 따라서 release 빌드에 코드가 포함되어도 런타임 비용은 0에 가깝습니다.
+When `isEnabled == false`, calls to `LogStore.shared.log(...)` are immediately ignored, and `LogViewer.configure { ... }` becomes a no-op as well. So even if the code is included in release builds, the runtime cost is effectively zero.
 
-## 로깅
+## Logging
 
 ```swift
 LogStore.shared.log(level: .notice,  category: "App",     message: "앱 시작")
@@ -80,15 +80,15 @@ LogStore.shared.log(level: .warning, category: "Network", message: "429 Too Many
 LogStore.shared.log(level: .error,   category: "Payment", message: "카드 한도 초과")
 ```
 
-`LogStore.shared.log(...)`는 `nonisolated`이므로 어느 스레드에서도 호출 가능합니다 (내부에서 MainActor로 hop). 호출부에서 `await`이 필요 없습니다.
+`LogStore.shared.log(...)` is `nonisolated`, so it can be called from any thread (it hops to MainActor internally). No `await` is required at the call site.
 
-`LogEntry.Level` 케이스: `.log`, `.notice`, `.warning`, `.error`, `.critical`, `.fault` (Comparable).
+`LogEntry.Level` cases: `.log`, `.notice`, `.warning`, `.error`, `.critical`, `.fault` (Comparable).
 
-## 화면 띄우기 — 직접 결정
+## Presenting the screen — your choice
 
-이 라이브러리는 `LogViewerView()` 한 개만 제공합니다. 띄우는 시점/방식은 앱이 정합니다. 자주 쓰이는 패턴 모음을 아래에 정리했습니다.
+This library provides only `LogViewerView()`. When and how to present it is up to the app. A collection of common patterns is summarized below.
 
-### 패턴 1. 디버그 메뉴의 NavigationLink
+### Pattern 1. NavigationLink in a debug menu
 
 ```swift
 import SwiftUI
@@ -106,7 +106,7 @@ struct DebugMenu: View {
 }
 ```
 
-### 패턴 2. 비밀 제스처로 sheet 띄우기 (3-tap, long press 등)
+### Pattern 2. Presenting a sheet via a secret gesture (3-tap, long press, etc.)
 
 ```swift
 import SwiftUI
@@ -123,7 +123,7 @@ struct ContentView: View {
 }
 ```
 
-### 패턴 3. 디버그 빌드 전용 floating 버튼
+### Pattern 3. A floating button only in debug builds
 
 ```swift
 import SwiftUI
@@ -157,7 +157,7 @@ struct RootView: View {
 }
 ```
 
-### 패턴 4. UIKit에서 띄우기
+### Pattern 4. Presenting from UIKit
 
 ```swift
 import UIKit
@@ -172,9 +172,9 @@ final class DebugViewController: UIViewController {
 }
 ```
 
-### 패턴 5. 흔들기로 띄우기 (UIWindow 서브클래스)
+### Pattern 5. Presenting on shake (UIWindow subclass)
 
-원하면 다음 5줄짜리 서브클래스를 앱 코드에 추가하세요. 라이브러리는 이 동작을 강제하지 않습니다.
+If you want it, add the following 5-line subclass to your app code. The library does not enforce this behavior.
 
 ```swift
 import UIKit
@@ -189,16 +189,16 @@ final class ShakeWindow: UIWindow {
 }
 ```
 
-`SceneDelegate`에서 `ShakeWindow(windowScene: ws)`로 만들고, `onShake`에서 `LogViewerView()`를 `UIHostingController`로 감싸 present하면 됩니다. SwiftUI `WindowGroup`을 쓰는 앱이라면 `UIApplicationDelegateAdaptor`로 SceneDelegate를 끼우거나 패턴 2/3의 제스처 트리거를 권장합니다.
+In `SceneDelegate`, create it with `ShakeWindow(windowScene: ws)`, and in `onShake` wrap `LogViewerView()` in a `UIHostingController` and present it. For apps using SwiftUI `WindowGroup`, either inject a SceneDelegate via `UIApplicationDelegateAdaptor`, or use the gesture triggers from patterns 2/3.
 
 ## Configuration
 
 `LogViewerConfiguration`:
 
-| 옵션 | 타입 | 기본값 | 설명 |
+| Option | Type | Default | Description |
 | ---- | ---- | ------ | ---- |
-| `maxLogCount` | `Int` | `500` | ring buffer 최대 보관 수. 초과 시 오래된 항목부터 폐기. |
-| `dateFormat` | `String` | `"HH:mm:ss.SSS"` | 타임스탬프 표시 포맷. |
+| `maxLogCount` | `Int` | `500` | Maximum ring-buffer capacity. When exceeded, the oldest entries are discarded first. |
+| `dateFormat` | `String` | `"HH:mm:ss.SSS"` | Timestamp display format. |
 
 ```swift
 LogViewer.configure { config in
@@ -207,18 +207,18 @@ LogViewer.configure { config in
 }
 ```
 
-`LogViewer.configure { ... }`는 `isEnabled == false`이면 no-op입니다.
+`LogViewer.configure { ... }` is a no-op when `isEnabled == false`.
 
-## 로그 export
+## Log export
 
 ```swift
 let text = LogStore.shared.exportAsText(includeLocation: true)
-let url  = LogStore.shared.exportAsLogFile()  // tmp 디렉토리에 .log 파일 생성
+let url  = LogStore.shared.exportAsLogFile()  // creates a .log file in the tmp directory
 ```
 
-`LogViewerView` 내부의 공유 버튼이 동일한 export를 사용합니다. UIKit에서 `UIActivityViewController`에 `text`나 `url`을 넘기면 시스템 공유 시트가 열립니다.
+The share button inside `LogViewerView` uses the same export. In UIKit, passing `text` or `url` to a `UIActivityViewController` opens the system share sheet.
 
-## 데이터 모델
+## Data model
 
 - `LogEntry`
   - `id: UUID`
@@ -239,11 +239,11 @@ let url  = LogStore.shared.exportAsLogFile()  // tmp 디렉토리에 .log 파일
 
 ## Examples
 
-- `Examples/SwiftUIExample` — SwiftUI에서 직접 트리거 (sheet/NavigationLink 패턴)
-- `Examples/UIKitExample` — UIKit에서 `UIHostingController`로 띄우는 패턴
+- `Examples/SwiftUIExample` — triggering directly from SwiftUI (sheet/NavigationLink patterns)
+- `Examples/UIKitExample` — pattern for presenting via `UIHostingController` from UIKit
 
-각 디렉토리의 `.xcodeproj`를 Xcode로 열어 바로 실행할 수 있습니다.
+You can open each directory's `.xcodeproj` in Xcode and run it directly.
 
 ## License
 
-MIT License. 자세한 내용은 [LICENSE](./LICENSE) 파일을 참고하세요.
+MIT License. See the [LICENSE](./LICENSE) file for details.
