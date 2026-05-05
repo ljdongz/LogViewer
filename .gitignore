@@ -19,3 +19,7 @@ xcuserdata/
 
 # Tooling artifacts
 .omc/
+
+# Local-only docs
+LogViewer.md
+CHANGELOG.md
