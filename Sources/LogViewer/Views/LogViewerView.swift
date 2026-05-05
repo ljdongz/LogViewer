@@ -1,5 +1,25 @@
 import SwiftUI
 
+/// LogViewer가 제공하는 SwiftUI 로그 화면.
+///
+/// ``LogStore/shared``의 항목을 보여주며 검색/하이라이트, 레벨·카테고리 필터,
+/// 텍스트 공유, `.log` 파일 export 기능을 포함합니다. 라이브러리는 이 뷰를
+/// 자동으로 띄우지 않으므로 호스트 앱이 sheet/NavigationLink/full-screen cover 등
+/// 원하는 방식으로 띄우면 됩니다. 트리거 패턴 모음은 <doc:PresentationRecipes> 참고.
+///
+/// ```swift
+/// struct DebugMenu: View {
+///     @State private var showLog = false
+///     var body: some View {
+///         Button("로그 보기") { showLog = true }
+///             .sheet(isPresented: $showLog) { LogViewerView() }
+///     }
+/// }
+/// ```
+///
+/// 내부에 자체 `NavigationStack`을 가지고 있어 sheet의 root로 그대로 사용해도
+/// 타이틀/툴바가 정상 동작합니다. 닫기 버튼은 `Environment(\.dismiss)`를 사용해
+/// presenter와 무관하게 동작합니다.
 public struct LogViewerView: View {
     @Environment(\.dismiss) private var dismiss
     @StateObject private var store = LogStore.shared
@@ -26,6 +46,9 @@ public struct LogViewerView: View {
     // Initial scroll flag
     @State private var didInitialScroll: Bool = false
 
+    /// 빈 ``LogViewerView``를 만듭니다.
+    ///
+    /// 모든 상태는 ``LogStore/shared``에서 가져오므로 별도 파라미터가 필요 없습니다.
     public init() {}
 
     // MARK: - Filtered Entries
