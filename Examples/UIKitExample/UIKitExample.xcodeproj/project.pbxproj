@@ -7,25 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		165BEB6A09F267B14E04DA98 /* hud-stdin-cache.json in Resources */ = {isa = PBXBuildFile; fileRef = 898FC2C041F22C55A8BFDE40 /* hud-stdin-cache.json */; };
 		181DD23A4AC2AA972A68CDC3 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA26F7C4291F7940A0AFF4F /* AppLogger.swift */; };
-		2501559DC6CD9B7980121103 /* idle-notif-cooldown.json in Resources */ = {isa = PBXBuildFile; fileRef = 1606443FDE0B9A5743382BAD /* idle-notif-cooldown.json */; };
 		303E015A454EBC5F6333E0E8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8DC8B9F9EC32BF4B74EE04 /* SceneDelegate.swift */; };
 		60C6E2C968110842F1A7D2CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0386D548571F18E0EDFBDAA3 /* AppDelegate.swift */; };
 		63A4A8DE8BEDB279970122E9 /* LogViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 2C9BABD82BF94B6EF0BEF641 /* LogViewer */; };
+		98E3649FA678861DA69FF2EA /* ShakeWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AA23BE728099AF91F589C0 /* ShakeWindow.swift */; };
 		C433F37DB36BD9836C2FB016 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1A6725F11928B2E2C48208 /* ViewController.swift */; };
-		D369796231489A10BDA0AC07 /* hud-state.json in Resources */ = {isa = PBXBuildFile; fileRef = 9ECD42B0202D1928283B6068 /* hud-state.json */; };
-		E50C9A4DF3F083B196B53983 /* UIKitExample.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 9AE5A74E916CB960E24EDF50 /* UIKitExample.xcodeproj */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0386D548571F18E0EDFBDAA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1606443FDE0B9A5743382BAD /* idle-notif-cooldown.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "idle-notif-cooldown.json"; sourceTree = "<group>"; };
-		3780833FF713C66A90443DBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		898FC2C041F22C55A8BFDE40 /* hud-stdin-cache.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "hud-stdin-cache.json"; sourceTree = "<group>"; };
 		8D77997915D78A58C634E666 /* UIKitExample.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = UIKitExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AE5A74E916CB960E24EDF50 /* UIKitExample.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = UIKitExample.xcodeproj; sourceTree = "<group>"; };
-		9ECD42B0202D1928283B6068 /* hud-state.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "hud-state.json"; sourceTree = "<group>"; };
+		A5AA23BE728099AF91F589C0 /* ShakeWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeWindow.swift; sourceTree = "<group>"; };
 		AE1A6725F11928B2E2C48208 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CD8DC8B9F9EC32BF4B74EE04 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DA820547B2B465E4303DECCD /* LogViewer */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LogViewer; path = ../..; sourceTree = SOURCE_ROOT; };
@@ -60,43 +53,21 @@
 			name = Packages;
 			sourceTree = "<group>";
 		};
-		B916CA386008AE0514CFDE62 /* state */ = {
-			isa = PBXGroup;
-			children = (
-				9ECD42B0202D1928283B6068 /* hud-state.json */,
-				898FC2C041F22C55A8BFDE40 /* hud-stdin-cache.json */,
-				1606443FDE0B9A5743382BAD /* idle-notif-cooldown.json */,
-			);
-			path = state;
-			sourceTree = "<group>";
-		};
 		C01EAE92D2007BF9493648DF /* UIKitExample */ = {
 			isa = PBXGroup;
 			children = (
 				0386D548571F18E0EDFBDAA3 /* AppDelegate.swift */,
 				DDA26F7C4291F7940A0AFF4F /* AppLogger.swift */,
-				3780833FF713C66A90443DBD /* Info.plist */,
 				CD8DC8B9F9EC32BF4B74EE04 /* SceneDelegate.swift */,
-				9AE5A74E916CB960E24EDF50 /* UIKitExample.xcodeproj */,
+				A5AA23BE728099AF91F589C0 /* ShakeWindow.swift */,
 				AE1A6725F11928B2E2C48208 /* ViewController.swift */,
-				C0A522DD032A56416900F86E /* .omc */,
 			);
-			name = UIKitExample;
-			path = .;
-			sourceTree = "<group>";
-		};
-		C0A522DD032A56416900F86E /* .omc */ = {
-			isa = PBXGroup;
-			children = (
-				B916CA386008AE0514CFDE62 /* state */,
-			);
-			path = .omc;
+			path = UIKitExample;
 			sourceTree = "<group>";
 		};
 		D0145A4E835EE896265431B4 = {
 			isa = PBXGroup;
 			children = (
-				C0A522DD032A56416900F86E /* .omc */,
 				B74BC6981A81D1F8F0C8489F /* Packages */,
 				C01EAE92D2007BF9493648DF /* UIKitExample */,
 				2E84ED8F29EF63DC8EE12764 /* Products */,
@@ -111,7 +82,6 @@
 			buildConfigurationList = 29A7F91D0D969A0ADD579A70 /* Build configuration list for PBXNativeTarget "UIKitExample" */;
 			buildPhases = (
 				40D1858F50A1EDE75114B402 /* Sources */,
-				AB9ACC9A85958C1DFC42905B /* Resources */,
 				63956EF499F7CFFC58CF2EF1 /* Frameworks */,
 			);
 			buildRules = (
@@ -135,6 +105,10 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
+					666EBE725F64CD3E76F15384 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = ACD8362F76C8B4278BE05300 /* Build configuration list for PBXProject "UIKitExample" */;
@@ -159,20 +133,6 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		AB9ACC9A85958C1DFC42905B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E50C9A4DF3F083B196B53983 /* UIKitExample.xcodeproj in Resources */,
-				D369796231489A10BDA0AC07 /* hud-state.json in Resources */,
-				165BEB6A09F267B14E04DA98 /* hud-stdin-cache.json in Resources */,
-				2501559DC6CD9B7980121103 /* idle-notif-cooldown.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		40D1858F50A1EDE75114B402 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -181,6 +141,7 @@
 				60C6E2C968110842F1A7D2CD /* AppDelegate.swift in Sources */,
 				181DD23A4AC2AA972A68CDC3 /* AppLogger.swift in Sources */,
 				303E015A454EBC5F6333E0E8 /* SceneDelegate.swift in Sources */,
+				98E3649FA678861DA69FF2EA /* ShakeWindow.swift in Sources */,
 				C433F37DB36BD9836C2FB016 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -192,15 +153,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UIKitExample/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.logviewer.example.uikit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -328,15 +295,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UIKitExample/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.logviewer.example.uikit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -351,7 +324,7 @@
 				1339DEEDEEDDB852B6294D2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		ACD8362F76C8B4278BE05300 /* Build configuration list for PBXProject "UIKitExample" */ = {
 			isa = XCConfigurationList;
@@ -360,7 +333,7 @@
 				6CCD73B8A6D950642FA88F61 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

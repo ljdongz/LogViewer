@@ -7,28 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1961DEA450663FB01B5A11BD /* hud-state.json in Resources */ = {isa = PBXBuildFile; fileRef = E2A8A09B9B521EA044E10E56 /* hud-state.json */; };
-		3167E9F2985B5CA5CADE61A3 /* SwiftUIExample.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = F9C749D55E2C696AF980E697 /* SwiftUIExample.xcodeproj */; };
-		326D701F758837C306872038 /* last-tool-error.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E4FBFAB3457D6180A701B01 /* last-tool-error.json */; };
-		3CE4A704B9031D4D2AEC8F90 /* project.yml in Resources */ = {isa = PBXBuildFile; fileRef = C51C0546E2E6C2A16A3E1C4F /* project.yml */; };
 		9784C89B19223F09F8DA6D7B /* SwiftUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D234E61A4018F269E51F44 /* SwiftUIExampleApp.swift */; };
 		E42C04D09C90274F8DF8CC1A /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30276EDB310764BB01F27731 /* AppLogger.swift */; };
 		E596D9BE85063139B5D39571 /* LogViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 58176F2F927AF24C730B11DB /* LogViewer */; };
-		E8B1A486AB68176AA0E8DBB9 /* hud-stdin-cache.json in Resources */ = {isa = PBXBuildFile; fileRef = 23D082766E4D299A7D1DC698 /* hud-stdin-cache.json */; };
 		FD4372FDA9B1184310BAC739 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03501684FBFC3208A4CCFCE6 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		03501684FBFC3208A4CCFCE6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		23D082766E4D299A7D1DC698 /* hud-stdin-cache.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "hud-stdin-cache.json"; sourceTree = "<group>"; };
 		30276EDB310764BB01F27731 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
 		54D234E61A4018F269E51F44 /* SwiftUIExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExampleApp.swift; sourceTree = "<group>"; };
-		5E4FBFAB3457D6180A701B01 /* last-tool-error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "last-tool-error.json"; sourceTree = "<group>"; };
-		C51C0546E2E6C2A16A3E1C4F /* project.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = project.yml; sourceTree = "<group>"; };
 		D965ADC62C757E57919B03FE /* LogViewer */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LogViewer; path = ../..; sourceTree = SOURCE_ROOT; };
 		DDD7ED310F42D82B866DF4EC /* SwiftUIExample.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SwiftUIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2A8A09B9B521EA044E10E56 /* hud-state.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "hud-state.json"; sourceTree = "<group>"; };
-		F9C749D55E2C696AF980E697 /* SwiftUIExample.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SwiftUIExample.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,17 +38,9 @@
 			children = (
 				30276EDB310764BB01F27731 /* AppLogger.swift */,
 				03501684FBFC3208A4CCFCE6 /* ContentView.swift */,
-				C51C0546E2E6C2A16A3E1C4F /* project.yml */,
-				F9C749D55E2C696AF980E697 /* SwiftUIExample.xcodeproj */,
 				54D234E61A4018F269E51F44 /* SwiftUIExampleApp.swift */,
 			);
-			name = SwiftUIExample;
-			path = .;
-			sourceTree = "<group>";
-		};
-		575D300C2F8CB0BB0085DFF4 /* Products */ = {
-			isa = PBXGroup;
-			name = Products;
+			path = SwiftUIExample;
 			sourceTree = "<group>";
 		};
 		82B3E586A682EC6F104E3E57 /* Packages */ = {
@@ -67,24 +49,6 @@
 				D965ADC62C757E57919B03FE /* LogViewer */,
 			);
 			name = Packages;
-			sourceTree = "<group>";
-		};
-		A11D60FA444A267D8832CAAB /* .omc */ = {
-			isa = PBXGroup;
-			children = (
-				B1B9B4F2EB43F9C829CEF247 /* state */,
-			);
-			path = .omc;
-			sourceTree = "<group>";
-		};
-		B1B9B4F2EB43F9C829CEF247 /* state */ = {
-			isa = PBXGroup;
-			children = (
-				E2A8A09B9B521EA044E10E56 /* hud-state.json */,
-				23D082766E4D299A7D1DC698 /* hud-stdin-cache.json */,
-				5E4FBFAB3457D6180A701B01 /* last-tool-error.json */,
-			);
-			path = state;
 			sourceTree = "<group>";
 		};
 		B26C454AC768ACEDA3C28A4E /* Products */ = {
@@ -98,7 +62,6 @@
 		B9638FDB4CCE9078075763B3 = {
 			isa = PBXGroup;
 			children = (
-				A11D60FA444A267D8832CAAB /* .omc */,
 				82B3E586A682EC6F104E3E57 /* Packages */,
 				14F4BEBC825C178F19D84F2E /* SwiftUIExample */,
 				B26C454AC768ACEDA3C28A4E /* Products */,
@@ -113,7 +76,6 @@
 			buildConfigurationList = 6F0889EA56FE25E6CC82247C /* Build configuration list for PBXNativeTarget "SwiftUIExample" */;
 			buildPhases = (
 				D3AA75F89C5544719DEE79A0 /* Sources */,
-				3051F30A1A839D7B6807540D /* Resources */,
 				86247E53049DF0B9B44BC7E2 /* Frameworks */,
 			);
 			buildRules = (
@@ -136,6 +98,12 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					B246CF60B1838184DB3DB021 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = 7BD9D13120D140C8BD7821A1 /* Build configuration list for PBXProject "SwiftUIExample" */;
 			developmentRegion = en;
@@ -152,33 +120,12 @@
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B26C454AC768ACEDA3C28A4E /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 575D300C2F8CB0BB0085DFF4 /* Products */;
-					ProjectRef = F9C749D55E2C696AF980E697 /* SwiftUIExample.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				B246CF60B1838184DB3DB021 /* SwiftUIExample */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		3051F30A1A839D7B6807540D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3167E9F2985B5CA5CADE61A3 /* SwiftUIExample.xcodeproj in Resources */,
-				1961DEA450663FB01B5A11BD /* hud-state.json in Resources */,
-				E8B1A486AB68176AA0E8DBB9 /* hud-stdin-cache.json in Resources */,
-				326D701F758837C306872038 /* last-tool-error.json in Resources */,
-				3CE4A704B9031D4D2AEC8F90 /* project.yml in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D3AA75F89C5544719DEE79A0 /* Sources */ = {
@@ -198,17 +145,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.logviewer.example.swiftui;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -217,17 +170,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.logviewer.example.swiftui;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -361,7 +320,7 @@
 				0C945E507433DA9C314F5E83 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		7BD9D13120D140C8BD7821A1 /* Build configuration list for PBXProject "SwiftUIExample" */ = {
 			isa = XCConfigurationList;
@@ -370,7 +329,7 @@
 				F711238AAEF3327873B582BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
