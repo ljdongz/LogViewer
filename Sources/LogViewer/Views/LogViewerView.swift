@@ -41,9 +41,6 @@ public struct LogViewerView: View {
     // Detail view
     @State private var selectedEntry: LogEntry?
 
-    // Search focus
-    @FocusState private var isSearchFocused: Bool
-
     // Initial scroll flag
     @State private var didInitialScroll: Bool = false
 
@@ -67,7 +64,6 @@ public struct LogViewerView: View {
     public var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                searchBar
                 filterBar
                 if !searchText.isEmpty && !matches.isEmpty {
                     searchNavigationBar
@@ -78,9 +74,11 @@ public struct LogViewerView: View {
                     logList
                 }
             }
-            .onTapGesture { isSearchFocused = false }
             .navigationTitle("Debug Logs (\(filteredEntries.count))")
             .navigationBarTitleDisplayMode(.inline)
+            .searchable(text: $searchText, prompt: "로그 검색")
+            .textInputAutocapitalization(.never)
+            .autocorrectionDisabled()
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("닫기") { dismiss() }
@@ -97,43 +95,6 @@ public struct LogViewerView: View {
         .sheet(item: $selectedEntry) { entry in
             LogEntryDetailView(entry: entry)
         }
-    }
-
-    // MARK: - Search Bar
-
-    private var searchBar: some View {
-        HStack(spacing: 8) {
-            HStack(spacing: 6) {
-                Image(systemName: "magnifyingglass")
-                    .foregroundStyle(.secondary)
-                TextField("로그 검색", text: $searchText)
-                    .focused($isSearchFocused)
-                    .textInputAutocapitalization(.never)
-                    .autocorrectionDisabled()
-                if !searchText.isEmpty {
-                    Button {
-                        searchText = ""
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(.secondary)
-                    }
-                    .buttonStyle(.plain)
-                }
-            }
-            .padding(8)
-            .background(Color(.systemGray6), in: RoundedRectangle(cornerRadius: 10))
-
-            if isSearchFocused {
-                Button("취소") {
-                    searchText = ""
-                    isSearchFocused = false
-                }
-                .transition(.move(edge: .trailing).combined(with: .opacity))
-            }
-        }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 6)
-        .animation(.easeInOut(duration: 0.2), value: isSearchFocused)
     }
 
     // MARK: - Filter Bar
