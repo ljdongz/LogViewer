@@ -90,9 +90,6 @@ private struct CategoryLabel: View {
         Text(text)
             .font(.caption2)
             .foregroundStyle(.secondary)
-            .padding(.horizontal, 6)
-            .padding(.vertical, 2)
-            .background(.quaternary, in: Capsule())
     }
 }
 
