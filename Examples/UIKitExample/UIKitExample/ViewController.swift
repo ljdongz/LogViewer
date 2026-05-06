@@ -1,5 +1,4 @@
 import UIKit
-import SwiftUI
 import LogViewer
 
 class ViewController: UIViewController {
@@ -100,11 +99,11 @@ class ViewController: UIViewController {
     }
 
     private func presentLogViewer() {
-        let host = UIHostingController(rootView: LogViewerView())
-        if let sheet = host.sheetPresentationController {
+        let vc = LogViewController()
+        if let sheet = vc.sheetPresentationController {
             sheet.detents = [.large()]
             sheet.prefersGrabberVisible = true
         }
-        present(host, animated: true)
+        present(vc, animated: true)
     }
 }
