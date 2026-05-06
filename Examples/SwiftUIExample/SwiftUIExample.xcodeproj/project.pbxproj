@@ -17,7 +17,6 @@
 		03501684FBFC3208A4CCFCE6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		30276EDB310764BB01F27731 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
 		54D234E61A4018F269E51F44 /* SwiftUIExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExampleApp.swift; sourceTree = "<group>"; };
-		D965ADC62C757E57919B03FE /* LogViewer */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LogViewer; path = ../..; sourceTree = SOURCE_ROOT; };
 		DDD7ED310F42D82B866DF4EC /* SwiftUIExample.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SwiftUIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -43,14 +42,6 @@
 			path = SwiftUIExample;
 			sourceTree = "<group>";
 		};
-		82B3E586A682EC6F104E3E57 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				D965ADC62C757E57919B03FE /* LogViewer */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 		B26C454AC768ACEDA3C28A4E /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -62,7 +53,6 @@
 		B9638FDB4CCE9078075763B3 = {
 			isa = PBXGroup;
 			children = (
-				82B3E586A682EC6F104E3E57 /* Packages */,
 				14F4BEBC825C178F19D84F2E /* SwiftUIExample */,
 				B26C454AC768ACEDA3C28A4E /* Products */,
 			);

@@ -21,7 +21,6 @@
 		A5AA23BE728099AF91F589C0 /* ShakeWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeWindow.swift; sourceTree = "<group>"; };
 		AE1A6725F11928B2E2C48208 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CD8DC8B9F9EC32BF4B74EE04 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DA820547B2B465E4303DECCD /* LogViewer */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LogViewer; path = ../..; sourceTree = SOURCE_ROOT; };
 		DDA26F7C4291F7940A0AFF4F /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -45,14 +44,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B74BC6981A81D1F8F0C8489F /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				DA820547B2B465E4303DECCD /* LogViewer */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 		C01EAE92D2007BF9493648DF /* UIKitExample */ = {
 			isa = PBXGroup;
 			children = (
@@ -68,7 +59,6 @@
 		D0145A4E835EE896265431B4 = {
 			isa = PBXGroup;
 			children = (
-				B74BC6981A81D1F8F0C8489F /* Packages */,
 				C01EAE92D2007BF9493648DF /* UIKitExample */,
 				2E84ED8F29EF63DC8EE12764 /* Products */,
 			);
