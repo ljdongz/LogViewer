@@ -14,6 +14,10 @@
 iOS 앱을 위한 인-앱 로그 뷰어 SwiftUI 컴포넌트.
 로그 캡처, 검색, 필터, 공유, 파일 export 기능 제공.
 
+<p align="center">
+  <img src="screenshot.png" alt="LogViewer 스크린샷" width="320">
+</p>
+
 ## 목차
 
 - [특징](#특징)

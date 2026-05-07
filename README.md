@@ -14,6 +14,10 @@
 An in-app log viewer SwiftUI component for iOS apps.
 Log capture, search, filter, share, and file export.
 
+<p align="center">
+  <img src="docs/screenshot.png" alt="LogViewer screenshot" width="320">
+</p>
+
 ## Table of Contents
 
 - [Features](#features)
