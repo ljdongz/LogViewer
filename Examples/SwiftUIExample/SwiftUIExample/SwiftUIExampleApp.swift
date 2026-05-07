@@ -8,6 +8,7 @@ struct SwiftUIExampleApp: App {
         LogViewer.setup { config in
             config.maxLogCount = 1000
         }
+        DummyLogSeeder.seed()
         #endif
     }
 
