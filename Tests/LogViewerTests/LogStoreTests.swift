@@ -5,7 +5,7 @@ final class LogStoreTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        LogViewer.isEnabled = true
+        LogViewer.setup()
         LogStore.shared.clear()
     }
 

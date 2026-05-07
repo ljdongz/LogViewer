@@ -27,8 +27,8 @@ Also add `LogViewer` to your target's dependencies.
 
 ### 2. Activate in Debug Builds
 
-For safety, LogViewer defaults to disabled (`isEnabled = false`).
-Wrap the activation in `#if DEBUG` at your app's entry point. See <doc:Activation> for the detailed rationale.
+For safety, LogViewer defaults to disabled. Call ``LogViewer/LogViewer/setup(_:)`` inside `#if DEBUG`
+at your app's entry point. See <doc:Activation> for the detailed rationale.
 
 ```swift
 import LogViewer
@@ -37,8 +37,7 @@ import LogViewer
 struct MyApp: App {
     init() {
         #if DEBUG
-        LogViewer.isEnabled = true
-        LogViewer.configure { config in
+        LogViewer.setup { config in
             config.maxLogCount = 1000
         }
         #endif
@@ -49,6 +48,8 @@ struct MyApp: App {
     }
 }
 ```
+
+The closure is optional — call `LogViewer.setup()` to activate with default configuration.
 
 ### 3. Call the Logger
 

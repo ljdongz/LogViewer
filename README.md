@@ -78,7 +78,7 @@ let package = Package(
 
 ## Activation — Read this first
 
-`LogViewer.isEnabled` defaults to `false`, and **the consuming app must explicitly turn it on** for logs to be captured. This is because SPM libraries are built in release mode, so the library's internal `#if DEBUG` cannot detect the consuming app's build configuration. Call the following inside `#if DEBUG` at your app's entry point.
+LogViewer defaults to disabled, and **the consuming app must explicitly turn it on** for logs to be captured. This is because SPM libraries are built in release mode, so the library's internal `#if DEBUG` cannot detect the consuming app's build configuration. Call `LogViewer.setup { ... }` inside `#if DEBUG` at your app's entry point.
 
 ```swift
 import SwiftUI
@@ -88,8 +88,7 @@ import LogViewer
 struct MyApp: App {
     init() {
         #if DEBUG
-        LogViewer.isEnabled = true
-        LogViewer.configure {
+        LogViewer.setup {
             $0.maxLogCount = 1000
             $0.dateFormat = "HH:mm:ss.SSS"
         }
@@ -102,7 +101,9 @@ struct MyApp: App {
 }
 ```
 
-When `isEnabled == false`, calls to `LogStore.shared.log(...)` are immediately ignored, and `LogViewer.configure { ... }` becomes a no-op as well. So even if the code is included in release builds, the runtime cost is effectively zero.
+`setup(_:)` activates the library and applies optional configuration in a single call. The closure is optional — call `LogViewer.setup()` to enable with defaults. When the library is disabled (the default state in release builds), all public APIs (`LogStore.shared.log(...)`, `LogViewerView`, etc.) become no-ops with negligible runtime cost.
+
+`LogViewer.isEnabled` is exposed as a read-only flag — its setter is `internal`, so you cannot toggle it directly. Activation is intentionally one-way; runtime toggling is not a supported scenario.
 
 ## Logging
 
@@ -232,14 +233,16 @@ In `SceneDelegate`, create it with `ShakeWindow(windowScene: ws)`, and in `onSha
 | `maxLogCount` | `Int` | `500` | Maximum ring-buffer capacity. When exceeded, the oldest entries are discarded first. |
 | `dateFormat` | `String` | `"HH:mm:ss.SSS"` | Timestamp display format. |
 
+Pass the configuration closure to `LogViewer.setup(_:)`:
+
 ```swift
-LogViewer.configure { config in
+LogViewer.setup { config in
     config.maxLogCount = 5_000
     config.dateFormat  = "yyyy-MM-dd HH:mm:ss.SSS"
 }
 ```
 
-`LogViewer.configure { ... }` is a no-op when `isEnabled == false`.
+`setup(_:)` activates the library and applies the configuration atomically. Calling it multiple times is supported — later calls update the configuration but activation only happens once.
 
 ## Log export
 

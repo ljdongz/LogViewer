@@ -8,11 +8,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         #if DEBUG
-        LogViewer.isEnabled = true
-        #endif
-        LogViewer.configure { config in
+        LogViewer.setup { config in
             config.maxLogCount = 1000
         }
+        #endif
         return true
     }
 
