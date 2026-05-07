@@ -12,8 +12,8 @@ class ViewController: UIViewController {
         view.backgroundColor = .systemBackground
         setupUI()
 
-        // Trigger A: 흔들기(shake)
-        // ShakeWindow 가 발송하는 Notification 을 구독해 LogViewerView 표시.
+        // Trigger A: shake gesture.
+        // Subscribe to the Notification posted by ShakeWindow to present LogViewerView.
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(handleShake),
@@ -36,17 +36,17 @@ class ViewController: UIViewController {
         titleLabel.textAlignment = .center
 
         let subtitleLabel = UILabel()
-        subtitleLabel.text = "기기를 흔들거나 아래 버튼으로 로그 뷰어를 엽니다"
+        subtitleLabel.text = "Shake the device or tap the button below to open the log viewer."
         subtitleLabel.font = .preferredFont(forTextStyle: .caption1)
         subtitleLabel.textColor = .secondaryLabel
         subtitleLabel.textAlignment = .center
         subtitleLabel.numberOfLines = 0
 
-        let infoButton = makeButton(title: "INFO 로그 생성", action: #selector(infoTapped))
-        let warnButton = makeButton(title: "WARNING 로그 생성", action: #selector(warnTapped))
-        let errorButton = makeButton(title: "ERROR 로그 생성", action: #selector(errorTapped))
-        let networkButton = makeButton(title: "네트워크 로그 생성", action: #selector(networkTapped))
-        let showButton = makeButton(title: "로그 뷰어 직접 열기", action: #selector(showLogViewer))
+        let infoButton = makeButton(title: "Generate INFO log", action: #selector(infoTapped))
+        let warnButton = makeButton(title: "Generate WARNING log", action: #selector(warnTapped))
+        let errorButton = makeButton(title: "Generate ERROR log", action: #selector(errorTapped))
+        let networkButton = makeButton(title: "Generate Network logs", action: #selector(networkTapped))
+        let showButton = makeButton(title: "Show Logs", action: #selector(showLogViewer))
 
         [titleLabel, subtitleLabel, infoButton, warnButton, errorButton, networkButton, showButton]
             .forEach { stack.addArrangedSubview($0) }
@@ -70,15 +70,15 @@ class ViewController: UIViewController {
 
     @objc private func infoTapped() {
         counter += 1
-        logger.info("버튼 탭 #\(counter)")
+        logger.info("Button tap #\(counter)")
     }
 
     @objc private func warnTapped() {
-        logger.warning("디스크 용량이 부족합니다 (남은: 120MB)")
+        logger.warning("Low disk space (remaining: 120MB)")
     }
 
     @objc private func errorTapped() {
-        logger.error("결제 실패: 카드 한도 초과")
+        logger.error("Payment failed: card limit exceeded")
     }
 
     @objc private func networkTapped() {
@@ -87,13 +87,13 @@ class ViewController: UIViewController {
         networkLogger.error("POST /api/orders → 500 Internal Server Error")
     }
 
-    // Trigger B: 명시 버튼
+    // Trigger B: explicit button.
     @objc private func showLogViewer() {
         presentLogViewer()
     }
 
     @objc private func handleShake() {
-        // 이미 LogViewer 가 떠 있으면 중복 표시하지 않음
+        // Don't double-present if LogViewer is already on screen.
         guard presentedViewController == nil else { return }
         presentLogViewer()
     }
