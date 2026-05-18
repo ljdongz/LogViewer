@@ -1,5 +1,5 @@
 # LogViewer
- 
+
 <p align="center">
   🇺🇸 English | <a href="docs/README.ko.md">🇰🇷 한국어</a>
 </p>
